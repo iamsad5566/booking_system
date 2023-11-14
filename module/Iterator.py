@@ -11,11 +11,8 @@ class Iterator:
         self.param = parameter
 
     def itrNumber(self, selector: str):
-        for i in range(2, 7):
-            number: Type[WebElement] = self.browser.find_element(by=By.CSS_SELECTOR, value=selector.format(people=i))
-            if int(number.text[0]) == self.param.getMemberSize():
-                number.click()
-                return
+        number: Type[WebElement] = self.browser.find_element(by=By.CSS_SELECTOR, value=selector.format(people=str(self.param.getMemberSize())))
+        number.click()
 
     def itrTheDate(self, selector: str, targetSection: str) -> Type[WebElement]:
         for i in range(1, 6):
@@ -46,7 +43,6 @@ class Iterator:
                 self.browser.execute_script("window.scrollTo(" + str(box.location['x']) + "," + str(box.location['y'])+")")
                 time.sleep(1)
 
-            print(box.text)
             if box.text == self.param.getOccasion():
                 box.click()
                 return
